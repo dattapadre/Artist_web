@@ -146,8 +146,9 @@ router.post("/save_hero_section",async function(req,res){
 
 
 router.post("/save_hero_title",async function(req,res){
-    var sql= `INSERT INTO hero_title (title) VALUES (?)`;
-    var data =  await exe(sql,[req.body.title]);
+     var  title = req.body.title;
+     var sql = `INSERT INTO hero_title (title) VALUES (?)`;
+     var data = await exe(sql,[title]);
     res.redirect("/admin/home")
 })
 
