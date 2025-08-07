@@ -63,7 +63,7 @@
   <% for (let i = 1; i <= 5; i++) { %>
     <div class="col-md-3">
       <label for="image<%= i %>" class="form-label">Image <%= i %> <b class="text-danger">*</b></label>
-      <input type="file" name="image<%= i %>" id="image<%= i %>" class="form-control" accept="image/*">
+      <input type="file" name="image<%= i %>" id="image<%= i %>" accept="image/*" class="form-control" accept="image/*">
     </div>
     <div class="col-md-1 text-center">
       <% if (hero_section['image' + i]) { %>
