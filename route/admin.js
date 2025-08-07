@@ -40,7 +40,12 @@ router.get("/logout",function(req,res){
 
 router.get("/profile",async function(req,res){
   var admin = await exe(`SELECT * FROM admin`);
-  res.render("admin/Profile.ejs",{admin:admin[0]});
+      if(req.session.admin_id==undefined){
+        res.redirect("/admin")
+    }else{
+         res.render("admin/Profile.ejs",{admin:admin[0]});
+    }
+  
 })
 
 router.post("/update_profile",async function(req,res){
