@@ -399,6 +399,11 @@ router.get("/all_project", async function (req, res) {
   
 });
 
+router.get("/projects_delete/:id",async function(req,res){
+  var data = await exe(`UPDATE paintings SET status='deleted' WHERE painting_id='${req.params.id}'`);
+  res.send("/admin/all_project")
+})
+
 
 
  router.get("/contact",async function(req,res){

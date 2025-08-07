@@ -5,7 +5,9 @@
     <div class="col-md-12">
       <div class="banner d-flex align-items-center rounded-3">
         <h3 class="text-white px-3">
-          <a href="/admin/dashbord" class="text-white text-decoration-none">Admin</a>
+          <a href="/admin/dashbord" class="text-white text-decoration-none"
+            >Admin</a
+          >
           <i class="fa-solid fa-chevron-right"></i> All Painting
         </h3>
         <div class="stripes"></div>
@@ -13,66 +15,75 @@
     </div>
   </div>
 
-<div class="table-responsive border p-4 rounded">
-  <table id="paintingsTable" class="table table-bordered table-striped text-center align-middle">
-    <thead>
-      <tr>
-        <th>Sr.No</th>
-        <th>Type</th>
-        <th class="d-none d-md-table-cell">Size</th>
-        <th class="d-none d-md-table-cell">Without Frame Price</th>
-        <th class="d-none d-md-table-cell">With Frame Price</th>
-        <th>Image 1</th>
-        <th class="d-none d-md-table-cell">Image 2</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% data.forEach((item, i) => { %>
+  <div class="table-responsive border p-4 rounded">
+    <table
+      id="paintingsTable"
+      class="table table-bordered table-striped text-center align-middle"
+    >
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>Type</th>
+          <th class="d-none d-md-table-cell">Size</th>
+          <th class="d-none d-md-table-cell">Without Frame Price</th>
+          <th class="d-none d-md-table-cell">With Frame Price</th>
+          <th>Image 1</th>
+          <th class="d-none d-md-table-cell">Image 2</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach((item, i) => { %>
         <tr>
           <td><%= i + 1 %></td>
           <td><%= item.painting_type %></td>
-          
+
           <td class="d-none d-md-table-cell"><%= item.size %></td>
-          <td class="d-none d-md-table-cell">₹<%= item.without_frame_price %></td>
-          <td class="d-none d-md-table-cell">₹<%= item.with_frame_price %></td>
-          
-          <td>
-            <img src="/upload/<%= item.image1 %>" 
-                 style="height: 60px; cursor: pointer;" 
-                 class="img-thumbnail"
-                 data-bs-toggle="modal" 
-                 data-bs-target="#imageModal" 
-                 onclick="showImage('/upload/<%= item.image1 %>')">
+          <td class="d-none d-md-table-cell">
+            ₹<%= item.without_frame_price %>
           </td>
-          
+          <td class="d-none d-md-table-cell">₹<%= item.with_frame_price %></td>
+
+          <td>
+            <img
+              src="/upload/<%= item.image1 %>"
+              style="height: 60px; cursor: pointer"
+              class="img-thumbnail"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage('/upload/<%= item.image1 %>')"
+            />
+          </td>
+
           <td class="d-none d-md-table-cell">
             <% if (item.image2) { %>
-              <img src="/upload/<%= item.image2 %>" 
-                   style="height: 60px; cursor: pointer;" 
-                   class="img-thumbnail"
-                   data-bs-toggle="modal" 
-                   data-bs-target="#imageModal" 
-                   onclick="showImage('/upload/<%= item.image2 %>')">
+            <img
+              src="/upload/<%= item.image2 %>"
+              style="height: 60px; cursor: pointer"
+              class="img-thumbnail"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              onclick="showImage('/upload/<%= item.image2 %>')"
+            />
             <% } else { %>
-              <span>No Image</span>
+            <span>No Image</span>
             <% } %>
           </td>
-          
+
           <td>
-            <a href="/admin/edit/<%= item.id %>" class="btn btn-sm text-white my-1" style="background-color: #4f4392;">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-            <a href="/admin/delete/<%= item.id %>" class="btn btn-sm btn-danger my-1" onclick="return confirm('Are you sure?')">
-              <i class="fa-solid fa-trash"></i>
-            </a>
+<a
+  href="/admin/projects_delete/<%= item.painting_id %>"
+  class="btn btn-sm btn-danger my-1"
+  onclick="return confirm('Are you sure?')">
+  <i class="fa-solid fa-trash"></i>
+</a>
+
           </td>
         </tr>
-      <% }) %>
-    </tbody>
-  </table>
-</div>
-
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Image Modal -->
@@ -80,10 +91,23 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content bg-transparent border-0 shadow-lg">
       <div class="modal-header border-0 bg-white rounded-top">
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close ms-auto"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="modal-body d-flex justify-content-center align-items-center p-2" style="background: rgba(0, 0, 0, 0.8); border-radius: 0 0 1rem 1rem;">
-        <img id="modalImage" src="" class="img-fluid rounded shadow-lg zoom-effect" style="max-height: 80vh; object-fit: contain;">
+      <div
+        class="modal-body d-flex justify-content-center align-items-center p-2"
+        style="background: rgba(0, 0, 0, 0.8); border-radius: 0 0 1rem 1rem"
+      >
+        <img
+          id="modalImage"
+          src=""
+          class="img-fluid rounded shadow-lg zoom-effect"
+          style="max-height: 80vh; object-fit: contain"
+        />
       </div>
     </div>
   </div>
@@ -96,14 +120,13 @@
   }
 
   $(document).ready(function () {
-    $('#paintingsTable').DataTable({
+    $("#paintingsTable").DataTable({
       dom: '<"d-flex justify-content-between align-items-center mb-3"fB>rtip',
-      buttons: [
-      ],
+      buttons: [],
       pageLength: 5,
       lengthChange: false,
-      order: [[0, 'asc']],
-      language: { search: '', searchPlaceholder: 'Search...' }
+      order: [[0, "asc"]],
+      language: { search: "", searchPlaceholder: "Search..." },
     });
   });
 </script>
@@ -123,9 +146,9 @@
 <!-- Styles -->
 <style>
   /* Align pagination to right */
-.dataTables_wrapper .dataTables_paginate {
-  text-align: right !important;
-}
+  .dataTables_wrapper .dataTables_paginate {
+    text-align: right !important;
+  }
 
   .zoom-effect {
     transition: transform 0.3s ease;
@@ -183,7 +206,6 @@
     font-weight: 500;
   }
 </style>
-
 
 <%- include("Footer") %>
 
