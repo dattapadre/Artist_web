@@ -1,5 +1,5 @@
-const express=require("express");
-const router=express.Router();
+const express = require("express");
+const router = express.Router();
 const exe = require("../conn");
 const nodemailer = require("nodemailer")
 
@@ -142,8 +142,6 @@ router.post("/save_hero_section",async function(req,res){
     await exe(sql,[d.description,d.button_text]);
     res.redirect("/admin/home")
 })
-
-
 
 router.post("/save_hero_title",async function(req,res){
      var  title = req.body.title;
